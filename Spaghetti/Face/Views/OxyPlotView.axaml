@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="clr-namespace:OxyPlot.Avalonia;assembly=OxyPlot.Avalonia"
+        xmlns:v="using:Spaghetti.Face.Views"
+        xmlns:vm="using:Spaghetti.Face.ViewModels"
+        x:Class="Spaghetti.Face.Views.OxyPlotView"
+        x:DataType="vm:OxyPlotViewModel"
+        d:DesignWidth="800"
+        d:DesignHeight="600"
+        mc:Ignorable="d"
+        Title="OxyPlot">
+
+    <Design.DataContext>
+        <vm:OxyPlotViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+        <oxy:PlotView Grid.Row="0" Grid.Column="0" Model="{Binding PlotModel1}" Controller="{Binding PlotController}"/>
+        <oxy:PlotView Grid.Row="0" Grid.Column="1" Model="{Binding PlotModel2}" Controller="{Binding PlotController}"/>
+        <oxy:PlotView Grid.Row="1" Grid.Column="0" Model="{Binding PlotModel3}" Controller="{Binding PlotController}"/>
+        <oxy:PlotView Grid.Row="1" Grid.Column="1" Model="{Binding PlotModel4}" Controller="{Binding PlotController}"/>
+    </Grid>
+
+</Window>

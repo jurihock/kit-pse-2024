@@ -1,0 +1,14 @@
+.*/
+!.github/
+
+__pycache__/
+*.py[cod]
+
+build*/
+cmake-build*/
+
+bin/
+obj/
+
+.DS_Store
+Thumbs.db

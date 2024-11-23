@@ -1,0 +1,10 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Spaghetti.App"
+             RequestedThemeVariant="Dark">
+    <Application.Styles>
+        <FluentTheme/>
+        <StyleInclude Source="avares://OxyPlot.Avalonia/Themes/Default.axaml"/>
+        <StyleInclude Source="avares://Spaghetti/Face/Styles/OxyPlot.axaml"/>
+    </Application.Styles>
+</Application>
