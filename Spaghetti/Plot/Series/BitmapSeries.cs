@@ -146,7 +146,11 @@ public sealed class BitmapSeries : XYAxisSeries, ISyncSeries
     var trackerWorldPoint = CoordinateTransformation.Forward(trackerDataPoint);
     var trackerScreenPoint = Transform(trackerWorldPoint);
 
-    var color = bitmap[nearestX, nearestY];
+    var dataX = nearestX;
+    var dataY = (YAxis.StartPosition > YAxis.EndPosition)
+      ? bitmap.Height - (nearestY + 1) : nearestY;
+
+    var color = bitmap[dataX, dataY];
     var text = string.Join('\n',
       $"X: {nearestX}",
       $"Y: {nearestY}",
