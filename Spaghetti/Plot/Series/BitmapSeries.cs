@@ -146,7 +146,8 @@ public sealed class BitmapSeries : XYAxisSeries, ISyncSeries
     var trackerWorldPoint = CoordinateTransformation.Forward(trackerDataPoint);
     var trackerScreenPoint = Transform(trackerWorldPoint);
 
-    var dataX = nearestX;
+    var dataX = (XAxis.StartPosition > XAxis.EndPosition)
+      ? bitmap.Width - (nearestX + 1) : nearestX;
     var dataY = (YAxis.StartPosition > YAxis.EndPosition)
       ? bitmap.Height - (nearestY + 1) : nearestY;
 
