@@ -45,4 +45,20 @@ public static class SkiaImageExtensions
 
     return Expression.Lambda<Func<long, T>>(output, index).Compile();
   }
+
+  public static Func<int, int> CreateColorChannelDecoder(this SKBitmap bmp)
+  {
+    var rgb = bmp.ColorType.ToString().Contains(
+      "rgb", StringComparison.OrdinalIgnoreCase);
+
+    if (rgb) // swap r and b
+    {
+      return (int index) => index switch {
+        0 => 2, 2 => 0, _ => index };
+    }
+    else // already bgr
+    {
+      return (int index) => index;
+    }
+  }
 }
