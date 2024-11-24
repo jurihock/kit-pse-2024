@@ -55,9 +55,9 @@ public sealed class OxyPlotViewModel : ReactiveObject
         {
           for (var x = 0; x < w; x++)
           {
-            model.Bitmap[x, y][0] = (byte)image[x, y, 0];
-            model.Bitmap[x, y][1] = (byte)image[x, y, 1];
-            model.Bitmap[x, y][2] = (byte)image[x, y, 2];
+            model.Bitmap[x, y][0] = (byte)image.Flip()[x, y, 0];
+            model.Bitmap[x, y][1] = (byte)image.Flip()[x, y, 1];
+            model.Bitmap[x, y][2] = (byte)image.Flip()[x, y, 2];
           }
         }
       }

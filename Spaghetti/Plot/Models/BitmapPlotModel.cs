@@ -34,7 +34,11 @@ public sealed class BitmapPlotModel : PlotModel
       TicklineColor = DefaultForegroundColor,
       IsPanEnabled = true,
       IsZoomEnabled = true,
-      IsAxisVisible = true
+      IsAxisVisible = true,
+      // normal direction (left -> right)
+      StartPosition = 0,
+      EndPosition = 1,
+
     };
     Axes.Add(AxisX);
 
@@ -44,7 +48,11 @@ public sealed class BitmapPlotModel : PlotModel
       TicklineColor = DefaultForegroundColor,
       IsPanEnabled = true,
       IsZoomEnabled = true,
-      IsAxisVisible = true
+      IsAxisVisible = true,
+      // inverse direction (top -> bottom)
+      StartPosition = 1,
+      EndPosition = 0,
+
     };
     Axes.Add(AxisY);
 

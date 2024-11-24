@@ -23,9 +23,10 @@ public sealed class BitmapSeries : XYAxisSeries, ISyncSeries
         return;
       }
 
-      CoordinateTransformation = new CartesianCoordinateTransformation(
-        new LinearCoordinateTransformation(value.Width),
-        new LinearCoordinateTransformation(value.Height));
+      // TODO: optionally transform image coordinates
+      //CoordinateTransformation = new CartesianCoordinateTransformation(
+      //  new LinearCoordinateTransformation(...),
+      //  new LinearCoordinateTransformation(...));
 
       Data = (value, value.ToOxyImage());
     }
