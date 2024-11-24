@@ -6,7 +6,6 @@ namespace Spaghetti.Core.Image.Envi;
 
 public sealed class EnviImage<T> : IImage<T>, IDisposable
 {
-  private string FileID { get; } = Guid.NewGuid().ToString();
   private MemoryMappedFile? FileMapping { get; set; }
   private MemoryMappedViewAccessor? FileAccessor { get; set; }
   private Func<long, T> GetValue { get; init; }
@@ -75,7 +74,7 @@ public sealed class EnviImage<T> : IImage<T>, IDisposable
     FileMapping = MemoryMappedFile.CreateFromFile(
       filepaths.raw,
       FileMode.OpenOrCreate,
-      FileID,
+      null,
       size + offset,
       MemoryMappedFileAccess.Read);
 
