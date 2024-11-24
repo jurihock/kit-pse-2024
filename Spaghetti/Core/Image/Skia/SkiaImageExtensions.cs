@@ -49,7 +49,7 @@ public static class SkiaImageExtensions
 
   public static Func<int, int> CreateColorChannelDecoder(this SKBitmap bmp)
   {
-    var rgb = bmp.ColorType.ToString().Contains(
+    var rgb = bmp.ColorType.ToString().StartsWith(
       "rgb", StringComparison.OrdinalIgnoreCase);
 
     if (rgb) // swap r and b
