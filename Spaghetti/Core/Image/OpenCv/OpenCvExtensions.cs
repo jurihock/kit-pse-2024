@@ -9,9 +9,9 @@ namespace Spaghetti.Core.Image.OpenCv;
 
 public static class OpenCvExtensions
 {
-  public static Type TypeOf(this Mat mat)
+  public static Type TypeOf(this MatType type)
   {
-    return mat.Type().Depth switch
+    return type.Depth switch
     {
       MatType.CV_8U => typeof(byte),
       MatType.CV_8S => typeof(sbyte),
@@ -20,14 +20,14 @@ public static class OpenCvExtensions
       MatType.CV_32S => typeof(int),
       MatType.CV_32F => typeof(float),
       MatType.CV_64F => typeof(double),
-      _ => throw new ArgumentException(
-        $"Unsupported OpenCv data type \"{mat.Type()}\"!")
+      _ => throw new NotSupportedException(
+        $"Unsupported OpenCv data type \"{type}\"!")
     };
   }
 
-  public static int SizeOf(this Mat mat)
+  public static int SizeOf(this MatType type)
   {
-    return Marshal.SizeOf(mat.TypeOf());
+    return Marshal.SizeOf(type.TypeOf());
   }
 
   public static unsafe T UnsafeRead<T>(this Mat mat, long offset)
@@ -41,10 +41,10 @@ public static class OpenCvExtensions
   {
     var matrix = Expression.Constant(mat);
     var method = typeof(OpenCvExtensions).GetMethod(nameof(UnsafeRead))!
-                                         .MakeGenericMethod(mat.TypeOf());
+                                         .MakeGenericMethod(mat.Type().TypeOf());
 
     var index = Expression.Parameter(typeof(long));
-    var bytes = Expression.Constant((long)mat.SizeOf());
+    var bytes = Expression.Constant((long)mat.Type().SizeOf());
     var offset = Expression.Multiply(index, bytes);
 
     var input = Expression.Call(method, matrix, offset);

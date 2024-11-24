@@ -3,6 +3,7 @@ using Spaghetti.Core.Bitmap;
 using Spaghetti.Core.Image;
 using Spaghetti.Core.Image.Envi;
 using Spaghetti.Core.Image.OpenCv;
+using Spaghetti.Core.Image.Skia;
 using Spaghetti.Plot.Controllers;
 using Spaghetti.Plot.Models;
 using System.IO;
@@ -41,7 +42,8 @@ public sealed class OxyPlotViewModel : ReactiveObject
         }
         else
         {
-          image = new OpenCvImage<double>(file);
+          image = new SkiaImage<double>(file);
+          //image = new OpenCvImage<double>(file);
         }
       }
 

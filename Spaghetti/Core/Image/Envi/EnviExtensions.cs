@@ -45,7 +45,7 @@ public static class EnviExtensions
       EnviDataType.Int64 => typeof(long),
       EnviDataType.Single => typeof(float),
       EnviDataType.Double => typeof(double),
-      _ => throw new ArgumentException(
+      _ => throw new NotSupportedException(
         $"Unsupported ENVI data type \"{type}\"!")
     };
   }
@@ -95,7 +95,7 @@ public static class EnviExtensions
 
     if (value is null)
     {
-      throw new ArgumentException(
+      throw new KeyNotFoundException(
         $"Missing ENVI header field \"{key}\"!");
     }
     else if (typeof(TValue).IsEnum)
