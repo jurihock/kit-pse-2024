@@ -3,7 +3,7 @@ using System;
 
 namespace Spaghetti.Core.Image.Skia;
 
-public sealed class SkiaImage<T> : IImage<T>, IDisposable
+public sealed class SkiaImage<T> : IContiguousImage<T>, IDisposable
 {
   private SKBitmap? Data { get; set; }
   private Func<long, T> GetValue { get; init; }

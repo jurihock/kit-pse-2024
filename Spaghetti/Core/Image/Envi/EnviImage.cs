@@ -4,7 +4,7 @@ using System.IO.MemoryMappedFiles;
 
 namespace Spaghetti.Core.Image.Envi;
 
-public sealed class EnviImage<T> : IImage<T>, IDisposable
+public sealed class EnviImage<T> : IContiguousImage<T>, IDisposable
 {
   private MemoryMappedFile? FileMapping { get; set; }
   private MemoryMappedViewAccessor? FileAccessor { get; set; }

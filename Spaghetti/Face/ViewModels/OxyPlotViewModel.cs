@@ -51,25 +51,13 @@ public sealed class OxyPlotViewModel : ReactiveObject
 
         model.Bitmap = new BgrBitmap(w, h);
 
-        if (true)
+        for (var y = 0; y < h; y++)
         {
-          for (var y = 0; y < h; y++)
+          for (var x = 0; x < w; x++)
           {
-            for (var x = 0; x < w; x++)
-            {
-              model.Bitmap[x, y].B = (byte)image[x, y, 0];
-              model.Bitmap[x, y].G = (byte)image[x, y, 1];
-              model.Bitmap[x, y].R = (byte)image[x, y, 2];
-            }
-          }
-        }
-        else // currently YXZ only
-        {
-          for (var j = 0; j < w * h; j++)
-          {
-            model.Bitmap[j].B = (byte)image[j * 3 + 0];
-            model.Bitmap[j].G = (byte)image[j * 3 + 1];
-            model.Bitmap[j].R = (byte)image[j * 3 + 2];
+            model.Bitmap[x, y].B = (byte)image[x, y, 0];
+            model.Bitmap[x, y].G = (byte)image[x, y, 1];
+            model.Bitmap[x, y].R = (byte)image[x, y, 2];
           }
         }
       }
