@@ -15,6 +15,7 @@ public static class SkiaImageExtensions
       SKColorType.Gray8 => typeof(byte),
       SKColorType.Bgra8888 => typeof(byte),
       SKColorType.Rgba8888 => typeof(byte),
+      SKColorType.Rgb888x => typeof(byte),
       _ => throw new NotSupportedException(
         $"Unsupported Skia data type \"{type}\"!")
     };
