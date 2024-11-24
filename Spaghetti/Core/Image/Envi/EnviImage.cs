@@ -38,18 +38,18 @@ public sealed class EnviImage<T> : IContiguousImage<T>, IDisposable
         $"Missing ENVI raw file \"{filepaths.raw}\"!");
     }
 
-    var header = EnviExtensions.ParseHeaderFile(filepaths.hdr);
+    var header = new EnviHeader(filepaths.hdr);
 
-    var filetype = EnviExtensions.ParseHeaderValue<string>(header, "file type", "ENVI");
-    var offset = EnviExtensions.ParseHeaderValue<int>(header, "header offset", 0);
+    var filetype = header.Get<string>("file type", "ENVI");
+    var offset = header.Get<int>("header offset", 0);
 
-    var byteorder = EnviExtensions.ParseHeaderValue<EnviByteOrder>(header, "byte order", EnviExtensions.GetNativeByteOrder());
-    var datatype = EnviExtensions.ParseHeaderValue<EnviDataType>(header, "data type");
-    var interleave = EnviExtensions.ParseHeaderValue<EnviInterleave>(header, "interleave");
+    var byteorder = header.Get<EnviByteOrder>("byte order", EnviExtensions.GetNativeByteOrder());
+    var datatype = header.Get<EnviDataType>("data type");
+    var interleave = header.Get<EnviInterleave>("interleave");
 
-    var width = EnviExtensions.ParseHeaderValue<int>(header, "samples");
-    var height = EnviExtensions.ParseHeaderValue<int>(header, "lines");
-    var channels = EnviExtensions.ParseHeaderValue<int>(header, "bands");
+    var width = header.Get<int>("samples");
+    var height = header.Get<int>("lines");
+    var channels = header.Get<int>("bands");
 
     if (!filetype.Contains("ENVI", StringComparison.OrdinalIgnoreCase))
     {

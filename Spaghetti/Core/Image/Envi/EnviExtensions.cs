@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.MemoryMappedFiles;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
@@ -68,45 +65,5 @@ public static class EnviExtensions
     var output = Expression.Convert(input, typeof(T));
 
     return Expression.Lambda<Func<long, T>>(output, index).Compile();
-  }
-
-  public static Dictionary<string, string> ParseHeaderFile(string hdr)
-  {
-    return ParseHeaderString(File.ReadAllText(hdr));
-  }
-
-  public static Dictionary<string, string> ParseHeaderString(string hdr)
-  {
-    return new Dictionary<string, string>(hdr
-      .Split(Environment.NewLine)
-      .Select(line => line.Trim())
-      .Where(line => !string.IsNullOrEmpty(line))
-      .Select(line => line.Split(['='], 2))
-      .Where(line => line.Length == 2)
-      .Select(line => KeyValuePair.Create(
-        line.First().Trim(),
-        line.Last().Trim())),
-      StringComparer.OrdinalIgnoreCase);
-  }
-
-  public static TValue ParseHeaderValue<TValue>(IReadOnlyDictionary<string, string> hdr, string key, object? def = null)
-  {
-    var value = hdr.GetValueOrDefault(key) ?? def?.ToString();
-
-    if (value is null)
-    {
-      throw new KeyNotFoundException(
-        $"Missing ENVI header field \"{key}\"!");
-    }
-    else if (typeof(TValue).IsEnum)
-    {
-      return (TValue)Enum.Parse(
-        typeof(TValue), value, ignoreCase: true);
-    }
-    else
-    {
-      return (TValue)Convert.ChangeType(
-        value, typeof(TValue));
-    }
   }
 }

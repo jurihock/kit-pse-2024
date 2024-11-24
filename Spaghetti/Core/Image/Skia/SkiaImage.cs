@@ -9,11 +9,11 @@ public sealed class SkiaImage<T> : IContiguousImage<T>, IDisposable
   private Func<long, T> GetValue { get; init; }
   private Func<int, int> GetColor { get; init; }
 
-  public T this[int x, int y, int z] => GetValue(Layout.Flatten(x, y, GetColor(z)));
-  public T this[long i] => GetValue(i);
-
   public ImageShape Shape { get; init; }
   public ImageMemoryLayout Layout { get; init; }
+
+  public T this[int x, int y, int z] => GetValue(Layout.Flatten(x, y, GetColor(z)));
+  public T this[long i] => GetValue(i);
 
   public SkiaImage(string filepath)
   {
