@@ -2,6 +2,10 @@ using System;
 
 namespace Spaghetti.Core.Image;
 
+/// <summary>
+/// Flips the image along the Y axis.
+/// </summary>
+/// <param name="image">Image instance to wrap.</param>
 public sealed class FlippedImage<T>(IImage<T> image) : IImage<T>
 {
   public IImage<T> Image { get; } = image;

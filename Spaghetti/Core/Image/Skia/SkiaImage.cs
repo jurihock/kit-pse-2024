@@ -3,6 +3,13 @@ using System;
 
 namespace Spaghetti.Core.Image.Skia;
 
+/// <summary>
+/// Decodes image data for the specified filename and value type T.
+/// Supported image file formats include BMP, HEIF, JPEG, PNG and others:
+/// https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skencodedimageformat
+/// TIFF image files are not supported by Skia, and thus SkiaSharp:
+/// https://github.com/mono/SkiaSharp/issues/433
+/// </summary>
 public sealed class SkiaImage<T> : IContiguousImage<T>, IDisposable
 {
   private SKBitmap? Data { get; set; }

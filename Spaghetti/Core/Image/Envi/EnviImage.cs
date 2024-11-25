@@ -4,6 +4,9 @@ using System.IO.MemoryMappedFiles;
 
 namespace Spaghetti.Core.Image.Envi;
 
+/// <summary>
+/// Decodes ENVI image data for the specified filename and value type T.
+/// </summary>
 public sealed class EnviImage<T> : IContiguousImage<T>, IDisposable
 {
   private MemoryMappedFile? FileMapping { get; set; }

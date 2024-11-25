@@ -2,13 +2,34 @@ using System;
 
 namespace Spaghetti.Core.Image;
 
+/// <summary>
+/// Image width, height and number of color channels.
+/// </summary>
 public readonly struct ImageShape : IEquatable<ImageShape>
 {
+  /// <summary>
+  /// Number of available image pixels.
+  /// </summary>
   public int Width { get; }
+
+  /// <summary>
+  /// Number of available image lines.
+  /// </summary>
   public int Height { get; }
+
+  /// <summary>
+  /// Number of available image color channels.
+  /// </summary>
   public int Channels { get; }
 
+  /// <summary>
+  /// Product of image width and height.
+  /// </summary>
   public long Area { get; }
+
+  /// <summary>
+  /// Product of image width, height, and channels.
+  /// </summary>
   public long Volume { get; }
 
   public ImageShape(int width, int height, int channels)
